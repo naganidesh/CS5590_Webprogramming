@@ -1,7 +1,7 @@
 body {
   font-family: Helvetica, Arial, sans-serif;
   border-top: 5px solid #4c4066;
-  margin: 0px auto;
+  margin: 0 auto;
   font-size: 14px;
   color: #666666;
 }
@@ -35,7 +35,7 @@ h1 {
 
 #container {
   width: 1040px;
-  margin: 0px auto;
+  margin: 0 auto;
   min-height: 750px;
 }
 
@@ -66,7 +66,7 @@ input[type='text']:before {
   padding: 10px;
   height: 90px;
   width: 90px;
-  color: white;
+  color: white;/*yellow from white */
   font-size: 0.7em;
   text-transform: uppercase;
   font-weight: bold;
@@ -107,5 +107,5 @@ footer {
 
 footer #content {
   width: 1040px;
-  margin: 0px auto;
+  margin: 0 auto;
 }

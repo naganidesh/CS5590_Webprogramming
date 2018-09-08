@@ -9,12 +9,14 @@ function setPreviewColor(color) {
 function addBox(color) {
     $('#colors').prepend("<div class='item' style='background-color: " + color + ";'><div>");
 }
-
+var previewColor;
 
 $(document).ready(function(){
 
     //1.As the page loads add each color in the colors array to the div '#colors'
 
+    colors.forEach(function(color) {
+        addBox(color)});
 
 //set the preview color to one of the colors in the colors array randomly
     setPreviewColor(colors[Math.floor(Math.random()*colors.length)]);
@@ -23,10 +25,27 @@ $(document).ready(function(){
     $(document).on('keydown keyup keypress', '#color', function(){
         color = $(this).val();
         setPreviewColor(color);
-    })
+    });
 //2.Write an event handler to handle the click the event on the add to favorite button so that the color gets added to the list of favorite colors,
 // the content of the input gets cleared and the focus gets back on the input
+    $(document).on('click', '#add-to-favorite', function() {
+        addBox(color);
+    });
 
 //3.Write events handlers such that whenever any item in the favorite colors is clicked or hovered, the color gets displayed in the preview div
+
+    $('#colors').on('mouseover', '.item', function(){
+        previewColor=$('.preview').css('background-color');
+        color = $(this).css("background-color");
+        setPreviewColor(color);
+    });
+
+    $('#colors').on('mouseleave', '.item', function(){
+        setPreviewColor(previewColor);
+    });
+
+    $('#colors').on('click','.item', function(){
+        previewColor=color;
+    });
 
 });
