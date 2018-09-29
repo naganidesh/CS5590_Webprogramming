@@ -6,8 +6,6 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 
-var url='mongodb://naganidesh:secret65@ds119343.mlab.com:19343/naganidesh';
-
 var url='mongodb://naganidesh:secret65@ds119323.mlab.com:19323/naganidesh';
 var ObjectID = require('mongodb').ObjectID;
 
