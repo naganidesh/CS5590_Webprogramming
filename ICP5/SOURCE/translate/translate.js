@@ -3,17 +3,18 @@ var app = angular.module("ttApp",['ngSanitize']);
 app.controller('ttCtrl', function ($scope, $http) {
 
     $scope.langList = [];
-    // Loading the Supported Languages
-    $http.get("https://translate.yandex.net/api/v1.5/tr.json/getLangs?ui=en&key=trnsl.1.1.20151023T145251Z.bf1ca7097253ff7e.c0b0a88bea31ba51f72504cc0cc42cf891ed90d2").success(function (data) {
+    // retreving all the data from the yandex by using get method
+    $http.get("https://translate.yandex.net/api/v1.5/tr.json/getLangs?ui=en&key=trnsl.1.1.20180922T231915Z.73a1312edb27e918.0484e11c6e414f0f7957d494cb3d8e1aaad0a429").success(function (data) {
         if(data != null && data.langs != null){
+            // assigning the data from the json object data to the langlist
             $scope.langList = data.langs;
         }
     });
-    // If Error
-    $http.get("https://translate.yandex.net/api/v1.5/tr.json/getLangs?ui=en&key=trnsl.1.1.20180922T182334Z.c4c263e3c84f3913.f5739102a27dc9b385add52e8c430963bb276b2b").error(function (data) {
+    // If the data is not valid
+    $http.get("https://translate.yandex.net/api/v1.5/tr.json/getLangs?ui=en&key=trnsl.1.1.20180922T231915Z.73a1312edb27e918.0484e11c6e414f0f7957d494cb3d8e1aaad0a429").error(function (data) {
         alert("There was some error processing your request. Please try after some time.");
     });
-
+//for translating the text here gettranlatetext function is used
     $scope.getTranslateText = function () {
         $scope.textOut = "";
         var sourceText = $scope.sourceText;
@@ -23,9 +24,9 @@ app.controller('ttCtrl', function ($scope, $http) {
             if(destLan == null || destLan == ""){
                 destLan = 'en';
             }
-            //This is the API that gives the list of venues based on the place and search query.
+            //handler is assigned with the json object data
             var handler = $http.get("https://translate.yandex.net/api/v1.5/tr.json/translate?" +
-                "key=trnsl.1.1.20180922T182334Z.c4c263e3c84f3913.f5739102a27dc9b385add52e8c430963bb276b2b&text=" + sourceText + "&" +
+                "key=trnsl.1.1.20180922T231915Z.73a1312edb27e918.0484e11c6e414f0f7957d494cb3d8e1aaad0a429&text=" + sourceText + "&" +
                 "lang=" + sourceLan + "-" + destLan);
             handler.success(function (data) {
                 if (data != null && data.text != null) {
@@ -35,7 +36,7 @@ app.controller('ttCtrl', function ($scope, $http) {
                 }
             });
             handler.error(function (data) {
-                alert("There was some error processing your request. Please try after some time.");
+                alert("There was some error processing your request. Please try after some time.");//given data and language not equal
             });
         }else{
             $scope.textOut = "<strong>Source Text or Source Language cannot be empty</strong>";
