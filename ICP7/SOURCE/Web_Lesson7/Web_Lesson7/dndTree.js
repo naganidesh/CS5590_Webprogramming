@@ -1,4 +1,4 @@
-treeJSON = d3.json("treeData.json", function(error, treeData) {
+GtreeJSON = d3.json("treeData.json", function(error, treeData) {
 
     // Calculate total nodes, max label length
     var totalNodes = 0;
